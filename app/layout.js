@@ -8,9 +8,11 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>
-          <Header/>
+      
+        <body className="px-10 md:px-20 relative">
+        <Header/>
           {children}
+          
         </body>
       </html>
     </ClerkProvider>

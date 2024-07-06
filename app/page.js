@@ -1,10 +1,13 @@
+
 import { UserButton } from "@clerk/nextjs";
-
-
+import CategoryList from "./_components/CategoryList";
 export default function Home() {
   return (
     <>
-    <div>REturn to the god of war</div>
+    <div>
+    
+      <CategoryList/>
+    </div>
     
     </>
   );

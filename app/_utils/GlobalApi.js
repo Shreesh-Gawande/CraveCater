@@ -20,7 +20,32 @@ const GetCategory =async()=>{
   const result=await request(MASTER_URL,query)
   return result;
 }
+const GetReataurent=async(category)=>{
+  const query=gql`
+  query GetReataurent {
+  restaurants( first: 100 where: {category_some: {slug: "`+category+`"}}) {
+    aboutUs
+    address
+    banner {
+      url
+    }
+    category {
+      id
+      name
+    }
+    id
+    name
+    restroType
+    slug
+    workingHours
+  }
+}
+  `
+  const result=await request(MASTER_URL,query)
+  return result;
+}
 
 export default{
-    GetCategory
+    GetCategory,
+    GetReataurent,
 } 

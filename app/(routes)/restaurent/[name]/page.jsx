@@ -3,6 +3,7 @@
 import GlobalApi from '@/app/_utils/GlobalApi'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import Intro from '../_components/Intro';
 
 function RestaurentDetails() {
   const [restaurent,setRestaurent]=useState([]);
@@ -21,7 +22,7 @@ function RestaurentDetails() {
   }
   return (
     <div>
-      
+      <Intro restaurent={restaurent}/>
     </div>
   )
 }

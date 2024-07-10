@@ -45,7 +45,48 @@ const GetReataurent=async(category)=>{
   return result;
 }
 
+const GetRestroDetail=async(restroSlug)=>{
+  const query=gql`
+  query RestaurentDetails {
+  restaurant(where: {slug: "`+restroSlug+`"}) {
+    aboutUs
+    address
+    banner {
+      url
+    }
+    category {
+      name
+    }
+    id
+    name
+    restroType
+    slug
+    workingHours
+    menu {
+      ... on Menu {
+        id
+        category
+        menuItem {
+          ... on MenuItem {
+            id
+            name
+            description
+            price
+            productImage {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+const result=await request(MASTER_URL,query)
+return result;
+}
+
 export default{
     GetCategory,
     GetReataurent,
+    GetRestroDetail,
 } 

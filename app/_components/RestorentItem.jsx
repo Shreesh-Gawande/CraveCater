@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 function RestorentItem({ restaurant }) {
   return (
+    <Link 
+    href={"/restaurent/"+restaurant?.slug}>
     <div className='p-3
     hover:border rounded-xl
     hover:border-primary cursor-pointer
@@ -24,6 +27,7 @@ function RestorentItem({ restaurant }) {
       
       </div>
     </div>
+    </Link>
   )
 }
 

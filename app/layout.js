@@ -3,6 +3,7 @@ import {
 } from '@clerk/nextjs';
 import './globals.css';
 import Header from './_components/Header';
+import { Toaster } from "@/components/ui/sonner"
 
 export default function RootLayout({ children }) {
   return (
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
       
         <body className="px-10 md:px-20 relative">
         <Header/>
+        <Toaster/>
           {children}
           
         </body>

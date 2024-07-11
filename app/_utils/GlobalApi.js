@@ -85,8 +85,25 @@ const result=await request(MASTER_URL,query)
 return result;
 }
 
+const AddToCart=async(data)=>{
+  const query=gql`
+ mutation AddToCart {
+  createUserCart(
+    data: {email: "", price: 1.5, productImage: "", productName: "", productDescription: ""}
+  ) {
+    id
+  }
+  publishManyUserCarts(to: PUBLISHED) {
+    count
+  }
+}`
+const result=await request(MASTER_URL,query)
+return result;
+}
+
 export default{
     GetCategory,
     GetReataurent,
     GetRestroDetail,
+    AddToCart,
 } 

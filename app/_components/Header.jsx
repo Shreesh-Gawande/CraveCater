@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Image from 'next/image';
-import { Search } from 'lucide-react';
+import { Search, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SignInButton, SignUpButton, UserButton, useUser } from '@clerk/nextjs';
 
@@ -15,7 +15,14 @@ function Header() {
         <Search/>
       </div>
       {isSignedIn?
-      <UserButton/>
+      <div className='flex gap-5 items-center'>
+        <div className='flex gap-2 items-center'>
+          <ShoppingCart/>
+          <label className='bg-slate-200 rounded-full p-1 px-2'>0</label>
+        </div>
+        <UserButton/>
+      </div>
+      
       :<div className="flex gap-5">
         <SignInButton mode="modal">
        <Button variant="outline">Login</Button>

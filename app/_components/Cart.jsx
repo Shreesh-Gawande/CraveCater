@@ -2,8 +2,11 @@ import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
+import GlobalApi from '../_utils/GlobalApi'
+import { toast } from 'sonner'
 
 function Cart({ cart }) {
+
   
     const CalculateCartAmount=()=>{
         let total=0;
@@ -11,6 +14,18 @@ function Cart({ cart }) {
             total=total+item.price;
         });
         return total;
+    }
+
+    const RemoveItemFromCart=(id)=>{
+        GlobalApi.DisconnectRestroFromUserCart(id).then(resp=>{
+            console.log(resp);
+            if (resp) {
+               GlobalApi.DeleteItemFromCart(id).then(resp=>{
+                console.log(resp)
+                toast("Item Removed")
+               }) 
+            }
+        })
     }
   return (
     <div>
@@ -31,7 +46,8 @@ function Cart({ cart }) {
             <h2 className='text-sm'>{item?.productName}</h2>
           </div>
           <h2 className='font-bold flex gap-2'>Rs{item?.price}
-          <X className='h-4 w-4 text-red-500'/>
+          <X className='h-4 w-4 text-red-500' 
+          onClick={()=>RemoveItemFromCart(item.id)}/>
           </h2>
           </div>
         ))}

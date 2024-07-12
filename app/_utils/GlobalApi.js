@@ -89,7 +89,9 @@ const AddToCart=async(data)=>{
   const query=gql`
  mutation AddToCart {
   createUserCart(
-    data: {email: "", price: 1.5, productImage: "", productName: "", productDescription: ""}
+    data: {email: "`+data.email+`", price: `+data.price+`, productImage: "`+data.productImage+`",
+     productName: "`+data.name+`",
+     productDescription: "`+data.description+`" restaurant: {connect: {slug: "`+data.restaurentSlug+`"}}}
   ) {
     id
   }
@@ -101,9 +103,32 @@ const result=await request(MASTER_URL,query)
 return result;
 }
 
+const GetUserCart=async(userEmail)=>{
+  const query=gql`
+  query GetUserCart {
+  userCarts( first: 200 where: {email: "`+userEmail+`"}) {
+    id
+    price
+    productDescription
+    productImage
+    productName
+    restaurant {
+      name
+      banner {
+        url
+      }
+      slug
+    }
+  }
+}`
+const result=await request(MASTER_URL,query)
+return result;
+}
+
 export default{
     GetCategory,
     GetReataurent,
     GetRestroDetail,
     AddToCart,
+    GetUserCart,
 } 

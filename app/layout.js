@@ -7,6 +7,8 @@ import Header from './_components/Header';
 import { Toaster } from 'sonner';
 import { CartUpdateContext } from './_context/CartUpdateContext';
 import { useState } from 'react';
+import '@smastrom/react-rating/style.css'
+
 
 export default function RootLayout({ children }) {
   const [updateCart,setUpdateCart]=useState(false);
@@ -15,7 +17,7 @@ export default function RootLayout({ children }) {
       <CartUpdateContext.Provider value={{updateCart,setUpdateCart}}>
       <html lang="en">
       
-        <body className="px-10 md:px-20 relative">
+        <body className="px-10 md:px-20 relative mb-20">
         <Header/>
         <Toaster/>
           {children}

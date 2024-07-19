@@ -150,6 +150,44 @@ const result=await request(MASTER_URL,query)
 return result;
 }
 
+const AddNewReview=async(data)=>{
+  console.log(data)
+  const query=gql`
+  mutation AddNewReview {
+  createReview(
+    data: {email: "`+data.email+`",
+     profileImage: "`+data.profileImage+`",
+     reviewText:"`+data.reviewText+`",
+      star: `+data.star+`, 
+      userName: "`+data.userName+`",
+       restaurant: {connect: {slug: "`+data.RestrroSlug+`"}}}
+  ) {
+    id
+  }
+  publishManyReviews(to: PUBLISHED) {
+    count
+  }
+}`
+const result=await request(MASTER_URL,query)
+return result;
+}
+
+const getReviews=async(slug)=>{
+ const query=gql`
+ query RestaurentReviews {
+  reviews(where: {restaurant: {slug: "`+slug+`"}}) {
+    email
+    id
+    profileImage
+    publishedAt
+    star
+    userName
+  }
+}`
+const result=await request(MASTER_URL,query)
+return result;
+}
+
 export default{
     GetCategory,
     GetReataurent,
@@ -158,4 +196,6 @@ export default{
     GetUserCart,
     DisconnectRestroFromUserCart,
     DeleteItemFromCart,
+    AddNewReview,
+    getReviews,
 } 

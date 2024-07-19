@@ -38,6 +38,9 @@ const GetReataurent=async(category)=>{
     restroType
     slug
     workingHours
+     review{
+      star
+    }
   }
 }
   `
@@ -79,6 +82,9 @@ const GetRestroDetail=async(restroSlug)=>{
         }
       }
     }
+      review{
+      star
+      }
   }
 }`
 const result=await request(MASTER_URL,query)
@@ -175,13 +181,14 @@ return result;
 const getReviews=async(slug)=>{
  const query=gql`
  query RestaurentReviews {
-  reviews(where: {restaurant: {slug: "`+slug+`"}}) {
+  reviews(where: {restaurant: {slug: "`+slug+`"}} , orderBy: publishedAt_DESC) {
     email
     id
     profileImage
     publishedAt
     star
     userName
+    reviewText
   }
 }`
 const result=await request(MASTER_URL,query)

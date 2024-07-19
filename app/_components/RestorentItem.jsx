@@ -3,6 +3,17 @@ import Link from 'next/link'
 import React from 'react'
 
 function RestorentItem({ restaurant }) {
+const calculateRating=()=>{
+let total=0;
+let count=0;
+restaurant?.review.forEach(item=>{
+  total=total+item.star;
+  count++;
+})
+const result=total/count
+return result?result.toFixed(1):5;
+}
+
   return (
     <Link 
     href={"/restaurent/"+restaurant?.slug}>
@@ -19,7 +30,7 @@ function RestorentItem({ restaurant }) {
       <div className='flex justify-between items-center'>
         <div className="flex gap-3 items-center">
           <Image src="/star.png" alt='star' width={17} height={14}/>
-          <label className='text-gray-400 text-sm'>4.5</label>
+          <label className='text-gray-400 text-sm'>{calculateRating()}</label>
           <h2 className='text-gray-400 text-sm'>{restaurant.restroType[0]}</h2>
         </div>
         <h2 className='text-primary text-sm'>{restaurant.category[0].name}</h2>

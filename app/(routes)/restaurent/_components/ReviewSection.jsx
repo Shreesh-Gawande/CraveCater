@@ -7,6 +7,7 @@ import { Rating as ReactRating } from '@smastrom/react-rating'
 import GlobalApi from "@/app/_utils/GlobalApi"
 import { toast } from "sonner"
 import { useUser } from "@clerk/nextjs"
+import ReviewList from "./ReviewList"
 function ReviewSection({restaurent}) {
 const [reviewText,setreviewText]=useState();
 const [rating, setRating] = useState(0)
@@ -16,6 +17,7 @@ const [reviewList,setReviewList]=useState()
 
 useEffect(()=>{
 restaurent&&getReviewList();
+getReviewList()
 },[restaurent])
 
 const handleSubmit=()=>{
@@ -51,7 +53,7 @@ const getReviewList=()=>{
         onClick={()=>handleSubmit()}>Submit</Button>
       </div>
       <div className='col-span-2'>
-       List of Review
+       <ReviewList reviewList={reviewList}/>
       </div>
     </div>
   )

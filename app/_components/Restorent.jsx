@@ -15,7 +15,7 @@ function Restorent() {
     if (params) {
       console.log(params)
       setCategory(params.get('category'))
-      getRestorentList('all'||params.get('category'))
+      getRestorentList(params.get('category')||'all')
     }
   }, [params])
 

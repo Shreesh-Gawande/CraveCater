@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from 'next/navigation'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, Suspense } from 'react'
 import { Input } from "@/components/ui/input"
 import { useUser } from '@clerk/nextjs'
 import GlobalApi from '@/app/_utils/GlobalApi'

@@ -1,4 +1,4 @@
-/* "use client"
+"use client"
 import { useSearchParams } from 'next/navigation'
 import React, { useContext, useEffect, useState, Suspense } from 'react'
 import { Input } from "@/components/ui/input"
@@ -80,4 +80,3 @@ const [total,setTotal]=useState(0);
 }
 
 export default Checkout
- */

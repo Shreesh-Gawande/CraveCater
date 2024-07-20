@@ -1,4 +1,4 @@
-/* import React, { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import Checkout from './Checkout'; // Adjust path if necessary
 
 const Page = () => (
@@ -8,4 +8,3 @@ const Page = () => (
 );
 
 export default Page;
- */

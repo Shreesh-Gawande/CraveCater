@@ -57,9 +57,9 @@ function Cart({ cart }) {
           </h2>
           </div>
         ))}
-       {/*  <Link href={"/checkout?restaurent="+cart[1]?.restaurant?.name}> */}
+        <Link href={"/checkout?restaurent="+cart[1]?.restaurant?.name}>
         <Button className="w-full">Checkout Rs {CalculateCartAmount()}</Button>
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   )

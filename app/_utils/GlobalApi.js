@@ -157,7 +157,6 @@ return result;
 }
 
 const AddNewReview=async(data)=>{
-  console.log(data)
   const query=gql`
   mutation AddNewReview {
   createReview(

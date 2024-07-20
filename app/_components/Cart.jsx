@@ -1,19 +1,24 @@
+"use client"
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 import GlobalApi from '../_utils/GlobalApi'
 import { toast } from 'sonner'
+import Link from 'next/link'
+import { CartUpdateContext } from '../_context/CartUpdateContext'
 
 function Cart({ cart }) {
 
-  
+  const {updateCart,setUpdateCart}=useContext(CartUpdateContext);
     const CalculateCartAmount=()=>{
         let total=0;
         cart.forEach(item => {
             total=total+item.price;
         });
+        console.log(cart[1]?.restaurant?.name)
         return total;
+        
     }
 
     const RemoveItemFromCart=(id)=>{
@@ -23,13 +28,14 @@ function Cart({ cart }) {
                GlobalApi.DeleteItemFromCart(id).then(resp=>{
                 console.log(resp)
                 toast("Item Removed")
+                setUpdateCart(!updateCart)
                }) 
             }
         })
     }
   return (
     <div>
-      <h2 className='text-lg font-bold'>{cart[0]?.restaurant?.name}</h2>
+      <h2 className='text-lg font-bold'>{cart[1]?.restaurant?.name}</h2>
 
       <div className='mt-5 flex flex-col gap-3'>
         <h2 className='font-bold'>My Order</h2>
@@ -51,7 +57,9 @@ function Cart({ cart }) {
           </h2>
           </div>
         ))}
-        <Button>Checkout Rs {CalculateCartAmount()}</Button>
+        <Link href={"/checkout?restaurent="+cart[1]?.restaurant?.name}>
+        <Button className="w-full">Checkout Rs {CalculateCartAmount()}</Button>
+        </Link>
       </div>
     </div>
   )

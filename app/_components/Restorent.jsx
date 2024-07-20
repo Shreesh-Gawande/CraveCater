@@ -7,14 +7,15 @@ import RestorentItemSkeleton from './RestorentItemSkeleton';
 
 function Restorent() {
   const params = useSearchParams();
-  const [category, setCategory] = useState('all');
+  const [category, setCategory] = useState('All');
   const [restorent, setRestorent] = useState([]);
   const [loding,setLoding]=useState(false)
   
   useEffect(() => {
     if (params) {
+      console.log(params)
       setCategory(params.get('category'))
-      getRestorentList(params.get('category'))
+      getRestorentList('all'||params.get('category'))
     }
   }, [params])
 
@@ -39,7 +40,7 @@ function Restorent() {
           <RestorentItem key={index} restaurant={restaurant} />
         )):
         [1,2,3,4,5,6,7,8].map((item,index)=>(
-          <RestorentItemSkeleton/>
+          <RestorentItemSkeleton key={index}/>
         ))
       }
       </div>

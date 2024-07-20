@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
-import Checkout from './Checkout'; // Adjust path if necessary
-
+import Checkout from './Checkout';
 const Page = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Checkout />

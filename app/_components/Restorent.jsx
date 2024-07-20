@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams } from 'next/navigation'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import GlobalApi from '../_utils/GlobalApi';
 import RestorentItem from './RestorentItem';
 import RestorentItemSkeleton from './RestorentItemSkeleton';
@@ -28,6 +28,7 @@ function Restorent() {
   }
 
   return (
+    <Suspense>
     <div className='mt-5'>
       <h2 className='font-bold text-2xl'>Popular {category} Restaurants</h2>
       <h2 className='text-primary font-bold'>Results {restorent.length}</h2>
@@ -45,6 +46,7 @@ function Restorent() {
       }
       </div>
     </div>
+    </Suspense>
   )
 }
 

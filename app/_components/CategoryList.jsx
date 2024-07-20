@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState ,useRef} from 'react';
+import React, { useEffect, useState ,useRef, Suspense} from 'react';
 import Image from 'next/image'; 
 import GlobalApi from '../_utils/GlobalApi';
 import { ArrowRightCircle } from 'lucide-react';
@@ -36,6 +36,7 @@ function CategoryList() {
   
 
   return (
+    <Suspense>
     <div>
       <div className="flex gap-4 overflow-auto scrollbar-hide mt-40 relative" ref={listRef}>
         {categoryList && categoryList.map((category, index) => (
@@ -53,6 +54,7 @@ function CategoryList() {
       cursor-pointer bg-gray-500 text-white rounded-full h-8 w-8"
       onClick={() => ScrollRightHandler()}/>
     </div>
+    </Suspense>
   );
 }
 

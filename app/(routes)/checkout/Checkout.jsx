@@ -43,6 +43,7 @@ const [total,setTotal]=useState(0);
 
   return (
     <div>
+        <Suspense>
       <h1 className='mt-32 text-3xl font-bold'>Checkout</h1>
       
         <div className='p-5 px-5 md:px-10 grid grid-cols-1 md:grid-cols-3 '>
@@ -74,7 +75,7 @@ const [total,setTotal]=useState(0);
         
         </div>
         </div>
-        
+        </Suspense>
     </div>
   )
 }
